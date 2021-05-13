@@ -14,14 +14,11 @@ router.get("/",function(req,res){ // this is called when we access the root of t
 const myDatabase = require('./myDatabase');
 let db = new myDatabase(); // this pointer to a my databse module
 
-const Home = require('./HomeClass');
+const Home = require('./Homeclass');
 
 router.post('/create', function(req, res){ // routes holds all the request handlers
-	if (req.body.name == "") {
-		res.json({retVal:false});
-		return;
-	}
-	let obj = new Home(req.body.identifier,req.body.name);
+	
+	let obj = new Home(req.body.identifier,req.body.style,req.body.cost,req.body.view);
 	return(db.postHome(obj,res));
 });
 
@@ -33,13 +30,9 @@ router.get('/read', function(req, res){ // request handler
 
 
 router.put('/update', function(req, res){
-	if (req.body.name == "") {
-		res.json({retVal:false});
-		return;
-	}
-	let obj = new Home(req.body.identifier,req.body.name);
+	let obj = new Home(req.body.identifier,req.body.style,req.body.cost,req.body.view);
 	return(db.putHome(obj,res)); //calling the mongoose database throught the instantiated pointer
-	// passsing in the info from the client - in this case passing in the object of the Home to then make a document
+	// passsing in the info from the client - in this case passing in the object of the student to then make a document
 });
 
 router.delete('/delete/:identifier', function(req, res){

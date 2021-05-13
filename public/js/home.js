@@ -1,4 +1,10 @@
 
+function clearClicked(){// these functions send requests to the routes, holds all the connections and callbacks
+    $("#style").val("Spanish");
+    $("#cost").val(0);
+    $("#view").prop('checked', false);
+  return false;
+}
 function readClicked(){// these functions send requests to the routes, holds all the connections and callbacks
     $.ajax({
       url: "/read",
@@ -8,7 +14,9 @@ function readClicked(){// these functions send requests to the routes, holds all
         if (!data) //if there wa no data retured from routes, bad
           alert("bad read");
         else if (data.retVal) {
-          $("#name").val(data.retVal.name);
+          $("#style").val(data.retVal.style);
+          $("#cost").val(data.retVal.cost);
+          $("#view").prop('checked', data.retVal.view);
           alert("good read");
         } else // or if there was null/false retuned from the database, bad
           alert("bad read");
@@ -17,18 +25,11 @@ function readClicked(){// these functions send requests to the routes, holds all
     });
   return false;
 }
-function clearClicked(){// these functions send requests to the routes, holds all the connections and callbacks
-    $("#style").val("Spanish");
-    $("#cost").val(0);
-    $("#view").prop('checked', false);
-  return false;
-}
 function createClicked(){
     $.ajax({
       url: "/create",
       type: "POST",
-      data: {identifier:$("#identifier").val(),style:$("#style").val(),
-      cost:$("#cost").val(),view:$("#view").prop("checked")}, // send in data to create document
+      data: {identifier:$("#identifier").val(),style:$("#style").val(),cost:$("#cost").val(),view:$("#view").prop("checked")}, // send in data to create document
       success: function(data){
         if (!data)
           alert("bad create");
@@ -45,8 +46,7 @@ function updateClicked(){
     $.ajax({
       url: "/update",
       type: "PUT",
-      data: {identifier:$("#identifier").val(),style:$("#style").val(),
-      cost:$("#cost").val(),view:$("#view").prop("checked")}, // send in new data to replace old
+      data: {identifier:$("#identifier").val(),style:$("#style").val(),cost:$("#cost").val(),view:$("#view").prop("checked")}, // send in new data to replace old
       success: function(data){
         if (!data)
           alert("bad update");
