@@ -14,10 +14,10 @@ router.get("/",function(req,res){ // this is called when we access the root of t
 const myDatabase = require('./myDatabase');
 let db = new myDatabase(); // this pointer to a my databse module
 
-const Home = require('./Homeclass');
+const Home = require('./HomeClass');
 
 router.post('/create', function(req, res){ // routes holds all the request handlers
-	
+
 	let obj = new Home(req.body.identifier,req.body.style,req.body.cost,req.body.view);
 	return(db.postHome(obj,res));
 });

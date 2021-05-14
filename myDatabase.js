@@ -2,8 +2,8 @@
 
 var express = require("express");
 var mongoose = require("mongoose"); // how we acecess/use th mongo db
-var HomeModel = require("./models/Homeclass"); // different than the student module - located in
-const Home = require('./Homeclass'); // the in code version of a student
+var HomeModel = require("./models/HomeClass"); // different than the student module - located in
+const Home = require('./HomeClass'); // the in code version of a student
 
 let myDatabase = function() {
 }
