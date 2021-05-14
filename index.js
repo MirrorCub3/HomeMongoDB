@@ -4,7 +4,7 @@ let express = require('express');
 var bodyParser = require('body-parser');
 
 var mongoose = require("mongoose"); // mongoose package
-mongoose.connect("mongodb://localhost/property"); // database used
+mongoose.connect("mongodb://localhost/property",{useMongoClient:true}); // database used
 
 var routes = require("./routes");
 
